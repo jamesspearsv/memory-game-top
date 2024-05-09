@@ -1,10 +1,10 @@
 import './Card.css';
 
-export function Card({ info }) {
+export function Card({ card }) {
   return (
-    <div className='card' data-id={info.id}>
+    <div className='card' data-id={card.id}>
       <div className='image'></div>
-      <p>{info.value}</p>
+      <p>{card.id}</p>
     </div>
   );
 }

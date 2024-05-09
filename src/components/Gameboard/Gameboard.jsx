@@ -1,27 +1,32 @@
 import './Gameboard.css';
 import { Card } from '../Card/Card';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { data } from '../../js/testData';
 
+let didInit = false;
+const url = 'https://pokeapi.co/api/v2/pokemon/?limit=9';
+
 export function Gameboard({ cardInfo }) {
-  const cards = cardInfo.map((info) => <Card key={info.id} />);
-
   useEffect(() => {
-    console.log('fetching data...');
-    fetch('https://emojihub.yurace.pro/api/random')
-      .then((req) => req.json())
-      .then((data) => console.log(data));
+    if (!didInit) {
+      didInit = true;
+      console.log('fetching data...');
 
-    // Clean up function
-    return () => console.log('cleaned up');
+      fetch(url)
+        .then((request) => request.json())
+        .then((data) => setCards(data.results));
+
+      // Clean up function
+      return () => console.log('cleaned up');
+    }
   }, []);
 
   return (
     <div id='gameboard-container'>
       <p>Gameboard</p>
       <div id='gameboard'>
-        {cardInfo.map((info) => (
-          <Card key={info.id} info={info} />
+        {data.map((card) => (
+          <Card key={card.id} card={card} />
         ))}
       </div>
     </div>
