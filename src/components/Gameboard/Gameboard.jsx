@@ -5,9 +5,11 @@ import { useState, useEffect } from 'react';
 let didInit = false;
 const list = [1, 10, 15, 99, 5, 35, 7, 27, 145];
 
-export function Gameboard() {
+export function Gameboard({ score, setScore }) {
   const [pokemon, setPokemon] = useState([]);
   const [prevCards, setPrevCards] = useState([]);
+
+  console.log(!prevCards.includes('1'));
 
   function shuffle(cards) {
     const shuffledCards = [...cards];
@@ -18,13 +20,35 @@ export function Gameboard() {
   function handleClick({ currentTarget }) {
     // Psuedo Code:
     // If (card's id is not in previous cards)
+    //     Add card's id to previous cards
     //     incement score
     //     shuffle cards
-    //     Add card's id to previous cards
     // Else
     //     end game and check high score
 
-    shuffle(pokemon);
+    const id = currentTarget.dataset.name;
+    console.log(id);
+    if (!prevCards.includes(id)) {
+      // add pokemon to previous cards
+      const tempArray = [...prevCards];
+      tempArray.push(id);
+      setPrevCards(tempArray);
+
+      // increment score
+      const tempScore = { ...score };
+      tempScore.score++;
+      setScore(tempScore);
+
+      // shuffle cards
+      shuffle(pokemon);
+    } else {
+      alert('game over');
+      if (score.score > score.highScore) {
+        const tempScore = { ...score };
+        tempScore.highScore++;
+        setScore(tempScore);
+      }
+    }
   }
 
   useEffect(() => {
@@ -44,7 +68,7 @@ export function Gameboard() {
           jsons.forEach((json) => {
             const p = {
               name: json.name,
-              id: json.name,
+              id: json.id,
               sprite: json.sprites.front_default,
             };
 
@@ -62,12 +86,21 @@ export function Gameboard() {
     }
 
     // Clean up function
-    return () => console.log('cleaned up');
+    return () => (didInit = false);
   }, []);
 
   return (
     <div id='gameboard-container'>
       <p>Gameboard</p>
+      <p>Score: {score.score}</p>
+      <p>High Score: {score.highScore}</p>
+      <div
+        style={{ display: 'flex', gap: '10px', height: '1rem', margin: '1rem' }}
+      >
+        {prevCards.map((card, index) => (
+          <p key={index}>{card}</p>
+        ))}
+      </div>
       <div id='gameboard'>
         {pokemon.map((p) => (
           <Card
