@@ -5,13 +5,13 @@
 
 #gameboard {
   padding: 1rem;
-  width: 50dvw;
+  width: 50%;
   aspect-ratio: 1/1;
   margin: auto;
-  overflow: hidden;
+  overflow: scroll;
   background-color: aquamarine;
-  display: grid;
-  place-items: center;
-  grid-template-columns: repeat(3, 31%);
-  gap: 15px 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5%;
+  justify-content: center;
 }

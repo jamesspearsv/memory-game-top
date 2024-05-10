@@ -1,10 +1,12 @@
 import './Card.css';
 
-export function Card({ card }) {
+export function Card({ pokemon, handleClick }) {
   return (
-    <div className='card' data-id={card.id}>
-      <div className='image'></div>
-      <p>{card.id}</p>
+    <div className='card' data-id={pokemon.id} onClick={handleClick}>
+      <div className='image'>
+        <img src={pokemon.sprite} alt='' />
+        <p>{pokemon.name}</p>
+      </div>
     </div>
   );
 }
