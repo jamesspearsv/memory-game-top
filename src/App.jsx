@@ -1,7 +1,9 @@
 // ** STATIC IMPORTS **//
 import './App.css';
+import { GameOver } from './components/GameOver/GameOver';
 import { Gameboard } from './components/Gameboard/Gameboard';
-import { data } from './js/testData';
+import { NewGame } from './components/NewGame/NewGame';
+import { Scoreboard } from './components/Scoreboard/Scoreboard';
 
 // ** COMPONENT & REACT IMPORTS **//
 import { useState } from 'react';
@@ -12,31 +14,36 @@ function App() {
     highScore: 0,
   });
 
-  const [gameState, setGameState] = useState('game');
+  const [gameState, setGameState] = useState({
+    win: false,
+    active: 'new-game',
+  });
 
   return (
-    <>
-      <select
-        name='game-state'
-        id='game-state'
-        onChange={({ target }) => {
-          setGameState(target.value);
-        }}
-      >
-        <option value='new-game'>New Game</option>
-        <option value='game' selected>
-          Game
-        </option>
-        <option value='game-over'>Game Over</option>
-      </select>
-      <div id='app'>
-        {gameState === 'game' && (
-          <Gameboard score={score} setScore={setScore} />
-        )}
-        {gameState === 'new-game' && <p>New Game</p>}
-        {gameState === 'game-over' && <p>Game Over</p>}
-      </div>
-    </>
+    <div id='app'>
+      {gameState.active === 'new-game' && (
+        <NewGame gameState={gameState} setGameState={setGameState} />
+      )}
+      {gameState.active === 'game' && (
+        <>
+          <Scoreboard score={score} />
+          <Gameboard
+            score={score}
+            setScore={setScore}
+            gameState={gameState}
+            setGameState={setGameState}
+          />
+        </>
+      )}
+      {gameState.active === 'game-over' && (
+        <GameOver
+          score={score}
+          setScore={setScore}
+          gameState={gameState}
+          setGameState={setGameState}
+        />
+      )}
+    </div>
   );
 }
 

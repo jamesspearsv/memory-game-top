@@ -6,9 +6,16 @@ A simple memory game project from The Odin Project.
 
 - [x] API fetching
 - [x] Add ability to shuffle cards
-- [ ] Add score tracking
+- [x] Add score tracking
   - [x] Score
-  - [ ] High score
+  - [x] High score
 - [ ] Style cards and gameboard
-- [ ] New game menu
-- [ ] Game over screen
+- [x] Add game flow elements
+  - [x] New game menu
+  - [x] Game over screen
+  - [x] Game board
+- [x] Handle game flow
+  - [x] Game over
+  - [x] Win
+- [x] Handle game reset
+

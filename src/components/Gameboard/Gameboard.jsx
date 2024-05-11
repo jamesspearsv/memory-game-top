@@ -2,14 +2,12 @@ import './Gameboard.css';
 import { Card } from '../Card/Card';
 import { useState, useEffect } from 'react';
 
-let didInit = false;
 const list = [1, 10, 15, 99, 5, 35, 7, 27, 145];
+// const list = [1, 2, 3];
 
-export function Gameboard({ score, setScore }) {
+export function Gameboard({ score, setScore, gameState, setGameState }) {
   const [pokemon, setPokemon] = useState([]);
   const [prevCards, setPrevCards] = useState([]);
-
-  console.log(!prevCards.includes('1'));
 
   function shuffle(cards) {
     const shuffledCards = [...cards];
@@ -24,10 +22,10 @@ export function Gameboard({ score, setScore }) {
     //     incement score
     //     shuffle cards
     // Else
-    //     end game and check high score
+    //     check/set high score
+    //     end game
 
     const id = currentTarget.dataset.name;
-    console.log(id);
     if (!prevCards.includes(id)) {
       // add pokemon to previous cards
       const tempArray = [...prevCards];
@@ -42,12 +40,17 @@ export function Gameboard({ score, setScore }) {
       // shuffle cards
       shuffle(pokemon);
     } else {
-      alert('game over');
-      if (score.score > score.highScore) {
-        const tempScore = { ...score };
-        tempScore.highScore++;
-        setScore(tempScore);
+      const tempScore = { ...score };
+      // Check if score is a high score
+      if (tempScore.score > tempScore.highScore) {
+        // set new high score
+        tempScore.highScore = tempScore.score;
       }
+
+      // reset score and go to game over screen
+      tempScore.score = 0;
+      setScore(tempScore);
+      setGameState({ ...gameState, active: 'game-over' });
     }
   }
 
@@ -79,24 +82,32 @@ export function Gameboard({ score, setScore }) {
         });
     }
 
-    if (!didInit) {
-      didInit = true;
-      console.log('fetching data...');
-      fetchData(list);
-    }
+    fetchData(list);
 
     // Clean up function
-    return () => (didInit = false);
+    return () => null;
   }, []);
+
+  useEffect(() => {
+    function checkWin() {
+      if (prevCards.length > 0 && prevCards.length === pokemon.length) {
+        return true;
+      }
+
+      return false;
+    }
+
+    if (checkWin()) {
+      setGameState({ win: true, active: 'game-over' });
+    }
+  });
 
   return (
     <div id='gameboard-container'>
-      <p>Gameboard</p>
-      <p>Score: {score.score}</p>
-      <p>High Score: {score.highScore}</p>
       <div
         style={{ display: 'flex', gap: '10px', height: '1rem', margin: '1rem' }}
       >
+        <p>Previous Cards:</p>
         {prevCards.map((card, index) => (
           <p key={index}>{card}</p>
         ))}
