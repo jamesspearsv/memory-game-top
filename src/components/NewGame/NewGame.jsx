@@ -2,8 +2,7 @@ import './NewGame.css';
 
 export function NewGame({ gameState, setGameState }) {
   return (
-    <div id='new-game-menu'>
-      <h1>Memory Game!</h1>
+    <div id='new-game-screen' className='game-screen'>
       <p>
         This is a simple memory game. Click on each Pokemon once and only once.
       </p>
@@ -14,8 +13,11 @@ export function NewGame({ gameState, setGameState }) {
       </p>
       <button
         onClick={() => {
-          const temp = { win: false, active: 'game' };
-          setGameState(temp);
+          setGameState({
+            ...gameState,
+            win: false,
+            active: 'game',
+          });
         }}
       >
         Start

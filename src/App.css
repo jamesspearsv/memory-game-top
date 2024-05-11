@@ -2,3 +2,16 @@
   display: flex;
   flex-direction: column;
 }
+
+#app-header {
+  text-align: center;
+  font-weight: bold;
+}
+
+.game-screen {
+  width: 50%;
+  margin: auto;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+}

@@ -2,10 +2,13 @@ import './Gameboard.css';
 import { Card } from '../Card/Card';
 import { useState, useEffect } from 'react';
 
-const list = [1, 10, 15, 99, 5, 35, 7, 27, 145];
-// const list = [1, 2, 3];
+const levels = [
+  [1, 2, 3, 4, 5, 6],
+  [1, 10, 15, 99, 5, 35, 7, 27, 145],
+  [1, 10, 15, 99, 5, 35, 7, 27, 145, 25, 167, 123],
+];
 
-export function Gameboard({ score, setScore, setGameState }) {
+export function Gameboard({ score, setScore, gameState, setGameState }) {
   const [pokemon, setPokemon] = useState([]);
   const [prevCards, setPrevCards] = useState([]);
 
@@ -33,9 +36,7 @@ export function Gameboard({ score, setScore, setGameState }) {
       setPrevCards(tempArray);
 
       // increment score
-      const tempScore = { ...score };
-      tempScore.score++;
-      setScore(tempScore);
+      setScore((score) => ({ ...score, score: score.score + 1 }));
 
       // shuffle cards
       shuffle(pokemon);
@@ -50,7 +51,7 @@ export function Gameboard({ score, setScore, setGameState }) {
       // reset score and go to game over screen
       tempScore.score = 0;
       setScore(tempScore);
-      setGameState({ win: false, active: 'game-over' });
+      setGameState({ ...gameState, active: 'game-over' });
     }
   }
 
@@ -82,28 +83,28 @@ export function Gameboard({ score, setScore, setGameState }) {
         });
     }
 
-    fetchData(list);
+    fetchData(levels[gameState.level]);
 
     // Clean up function
     return () => null;
-  }, []);
+  }, [gameState.levels]);
 
   useEffect(() => {
     function checkWin() {
       if (prevCards.length > 0 && prevCards.length === pokemon.length) {
         return true;
       }
-
       return false;
     }
 
     if (checkWin()) {
-      setGameState({ win: true, active: 'game-over' });
+      setGameState({ ...gameState, win: true, active: 'game-over' });
     }
   });
 
   return (
     <div id='gameboard-container'>
+      <div>Level {gameState.level}</div>
       <div
         style={{ display: 'flex', gap: '10px', height: '1rem', margin: '1rem' }}
       >

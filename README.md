@@ -18,4 +18,4 @@ A simple memory game project from The Odin Project.
   - [x] Game over
   - [x] Win
 - [x] Handle game reset
-
+- [ ] Add game levels and leveling system

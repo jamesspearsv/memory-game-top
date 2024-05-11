@@ -17,12 +17,14 @@ function App() {
   const [gameState, setGameState] = useState({
     win: false,
     active: 'new-game',
+    level: 0,
   });
 
   return (
     <div id='app'>
+      <h1 id='app-header'>Memory Game</h1>
       {gameState.active === 'new-game' && (
-        <NewGame setGameState={setGameState} />
+        <NewGame gameState={gameState} setGameState={setGameState} />
       )}
       {gameState.active === 'game' && (
         <>
@@ -30,6 +32,7 @@ function App() {
           <Gameboard
             score={score}
             setScore={setScore}
+            gameState={gameState}
             setGameState={setGameState}
           />
         </>
