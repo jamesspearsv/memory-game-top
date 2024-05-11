@@ -14,7 +14,7 @@ export function NewGame({ gameState, setGameState }) {
       </p>
       <button
         onClick={() => {
-          const temp = { ...gameState, active: 'game' };
+          const temp = { win: false, active: 'game' };
           setGameState(temp);
         }}
       >

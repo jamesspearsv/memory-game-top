@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 const list = [1, 10, 15, 99, 5, 35, 7, 27, 145];
 // const list = [1, 2, 3];
 
-export function Gameboard({ score, setScore, gameState, setGameState }) {
+export function Gameboard({ score, setScore, setGameState }) {
   const [pokemon, setPokemon] = useState([]);
   const [prevCards, setPrevCards] = useState([]);
 
@@ -50,7 +50,7 @@ export function Gameboard({ score, setScore, gameState, setGameState }) {
       // reset score and go to game over screen
       tempScore.score = 0;
       setScore(tempScore);
-      setGameState({ ...gameState, active: 'game-over' });
+      setGameState({ win: false, active: 'game-over' });
     }
   }
 

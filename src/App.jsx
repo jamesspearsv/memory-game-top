@@ -22,7 +22,7 @@ function App() {
   return (
     <div id='app'>
       {gameState.active === 'new-game' && (
-        <NewGame gameState={gameState} setGameState={setGameState} />
+        <NewGame setGameState={setGameState} />
       )}
       {gameState.active === 'game' && (
         <>
@@ -30,7 +30,6 @@ function App() {
           <Gameboard
             score={score}
             setScore={setScore}
-            gameState={gameState}
             setGameState={setGameState}
           />
         </>
