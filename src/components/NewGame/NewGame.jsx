@@ -12,6 +12,7 @@ export function NewGame({ gameState, setGameState }) {
         win!
       </p>
       <button
+        className='button'
         onClick={() => {
           setGameState({
             ...gameState,

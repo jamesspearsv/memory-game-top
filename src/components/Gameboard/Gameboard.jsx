@@ -19,15 +19,6 @@ export function Gameboard({ score, setScore, gameState, setGameState }) {
   }
 
   function handleClick({ currentTarget }) {
-    // Psuedo Code:
-    // If (card's id is not in previous cards)
-    //     Add card's id to previous cards
-    //     incement score
-    //     shuffle cards
-    // Else
-    //     check/set high score
-    //     end game
-
     const id = currentTarget.dataset.name;
     if (!prevCards.includes(id)) {
       // add pokemon to previous cards
@@ -104,15 +95,6 @@ export function Gameboard({ score, setScore, gameState, setGameState }) {
 
   return (
     <div id='gameboard-container'>
-      <div>Level {gameState.level}</div>
-      <div
-        style={{ display: 'flex', gap: '10px', height: '1rem', margin: '1rem' }}
-      >
-        <p>Previous Cards:</p>
-        {prevCards.map((card, index) => (
-          <p key={index}>{card}</p>
-        ))}
-      </div>
       <div id='gameboard'>
         {pokemon.map((p) => (
           <Card

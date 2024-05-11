@@ -1,9 +1,30 @@
 .card {
-  width: 30%;
+  background-color: var(--color-accent);
+  cursor: pointer;
+  width: 75%;
   aspect-ratio: 1/1;
-  background-color: antiquewhite;
   display: flex;
+  gap: 0.5rem;
   flex-direction: column;
   align-items: center;
   justify-content: end;
+  margin: 0.7rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+}
+
+.card-image {
+  width: 90%;
+  aspect-ratio: 1/1;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-image img {
+  width: 100%;
+  height: auto;
 }

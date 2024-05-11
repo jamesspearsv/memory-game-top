@@ -1,17 +1,8 @@
-#gameboard-container {
-  flex-grow: 1;
-  background-color: antiquewhite;
-}
-
 #gameboard {
   padding: 1rem;
-  width: 50%;
-  aspect-ratio: 1/1;
+  width: 85%;
   margin: auto;
-  overflow: scroll;
-  background-color: aquamarine;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5%;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  place-items: center;
 }

@@ -1,3 +1,38 @@
-#scoreboard div > span {
-  margin-left: 5px;
+#scoreboard-container {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem auto;
+  align-items: center;
+  font-size: 1.2rem;
+  width: fit-content;
+}
+
+#level {
+}
+
+#scoreboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem auto;
+  background-color: var(--color-primary);
+  border-radius: 10px;
+  padding: 1rem;
+  color: #ffffff;
+}
+
+.score {
+  gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-count {
+  border: none;
+  border-radius: 5px;
+  width: 30px;
+  aspect-ratio: 1/1;
+  text-align: center;
 }

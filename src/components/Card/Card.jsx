@@ -8,8 +8,10 @@ export function Card({ pokemon, handleClick }) {
       data-name={pokemon.name}
       onClick={handleClick}
     >
-      <div className='image'>
+      <div className='card-image'>
         <img src={pokemon.sprite} alt='' />
+      </div>
+      <div className='card-name'>
         <p>{pokemon.name}</p>
       </div>
     </div>

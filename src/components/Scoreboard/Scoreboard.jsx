@@ -1,13 +1,18 @@
 import './Scoreboard.css';
 
-export function Scoreboard({ score }) {
+export function Scoreboard({ score, gameState }) {
   return (
-    <div id='scoreboard'>
-      <div>
-        Score<span>{score.score}</span>
-      </div>
-      <div>
-        High Score <span>{score.highScore}</span>
+    <div id='scoreboard-container'>
+      <div id='level'>Level {gameState.level + 1}</div>
+      <div id='scoreboard'>
+        <div className='score'>
+          <div>Score</div>
+          <div className='score-count'>{score.score}</div>
+        </div>
+        <div className='score'>
+          <div>High Score</div>
+          <div className='score-count'>{score.highScore}</div>
+        </div>
       </div>
     </div>
   );

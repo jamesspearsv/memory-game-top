@@ -20,15 +20,28 @@ function App() {
     level: 0,
   });
 
+  const [isDarkTheme, setIsDarkTheme] = useState(true);
+
   return (
-    <div id='app'>
-      <h1 id='app-header'>Memory Game</h1>
+    <div id='app' data-theme={isDarkTheme ? 'dark' : 'light'}>
+      <div id='header-container'>
+        <div id='app-header'>Memory Game</div>
+        <button
+          className='button'
+          id='theme-button'
+          onClick={() => {
+            setIsDarkTheme((isDarkTheme) => !isDarkTheme);
+          }}
+        >
+          Toggle Theme
+        </button>
+      </div>
       {gameState.active === 'new-game' && (
         <NewGame gameState={gameState} setGameState={setGameState} />
       )}
       {gameState.active === 'game' && (
         <>
-          <Scoreboard score={score} />
+          <Scoreboard score={score} gameState={gameState} />
           <Gameboard
             score={score}
             setScore={setScore}

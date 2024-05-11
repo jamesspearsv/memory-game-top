@@ -34,7 +34,7 @@ export function GameOver({ gameState, setGameState, score, setScore }) {
   return (
     <div id='game-over-screen' className='game-screen'>
       {message}
-      <button onClick={resetGame}>
+      <button className='button' onClick={resetGame}>
         {gameState.win ? 'Play Again' : 'Try Again'}
       </button>
     </div>

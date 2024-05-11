@@ -1,11 +1,42 @@
+:root {
+  --color-primary: #197bbd;
+}
+
+[data-theme='dark'] {
+  --color-accent: #4f4e4e;
+  --color-background: #272727;
+  --color: #ffffff;
+}
+
+[data-theme='light'] {
+  --color: #000000;
+  --color-background: #ffffff;
+  --color-accent: #ebebed;
+}
+
 #app {
   display: flex;
   flex-direction: column;
+  background-color: var(--color-background);
+  color: var(--color);
+  height: 100dvh;
+  padding: 1rem;
+  transition: background-color 250ms ease-in-out;
+}
+
+#theme-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1rem;
 }
 
 #app-header {
   text-align: center;
   font-weight: bold;
+  font-size: 2rem;
+  margin-left: auto;
+  color: var(--color-primary);
 }
 
 .game-screen {
@@ -14,4 +45,14 @@
   border: none;
   border-radius: 10px;
   text-align: center;
+}
+
+/* Class bases styles */
+.button {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: var(--color-accent) 2px solid;
+  border-radius: 5px;
+  background-color: var(--color-accent);
+  color: var(--color);
 }
