@@ -1,12 +1,15 @@
 // ** STATIC IMPORTS **//
 import './App.css';
+import * as SunIcon from './assets/sun.svg';
+import * as MoonIcon from './assets/moon.svg';
+
+// ** COMPONENT & REACT IMPORTS **//
 import { GameOver } from './components/GameOver/GameOver';
 import { Gameboard } from './components/Gameboard/Gameboard';
 import { NewGame } from './components/NewGame/NewGame';
 import { Scoreboard } from './components/Scoreboard/Scoreboard';
-
-// ** COMPONENT & REACT IMPORTS **//
 import { useState } from 'react';
+import { ThemeButton } from './components/ThemeButton/ThemeButton';
 
 function App() {
   const [score, setScore] = useState({
@@ -26,15 +29,10 @@ function App() {
     <div id='app' data-theme={isDarkTheme ? 'dark' : 'light'}>
       <div id='header-container'>
         <div id='app-header'>Memory Game</div>
-        <button
-          className='button'
-          id='theme-button'
-          onClick={() => {
-            setIsDarkTheme((isDarkTheme) => !isDarkTheme);
-          }}
-        >
-          Toggle Theme
-        </button>
+        <ThemeButton
+          isDarkTheme={isDarkTheme}
+          setIsDarkTheme={setIsDarkTheme}
+        />
       </div>
       {gameState.active === 'new-game' && (
         <NewGame gameState={gameState} setGameState={setGameState} />
