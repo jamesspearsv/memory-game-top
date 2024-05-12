@@ -15,7 +15,7 @@ export function NewGame({ gameState, setGameState }) {
         className='button'
         onClick={() => {
           setGameState({
-            ...gameState,
+            level: 1,
             win: false,
             active: 'game',
           });

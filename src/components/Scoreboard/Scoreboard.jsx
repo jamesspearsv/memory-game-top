@@ -3,7 +3,7 @@ import './Scoreboard.css';
 export function Scoreboard({ score, gameState }) {
   return (
     <div id='scoreboard-container'>
-      <div id='level'>Level {gameState.level + 1}</div>
+      <div id='level'>Level {gameState.level}</div>
       <div id='scoreboard'>
         <div className='score'>
           <div>Score</div>

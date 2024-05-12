@@ -74,7 +74,7 @@ export function Gameboard({ score, setScore, gameState, setGameState }) {
         });
     }
 
-    fetchData(levels[gameState.level]);
+    fetchData(levels[gameState.level - 1]);
 
     // Clean up function
     return () => null;

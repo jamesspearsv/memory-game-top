@@ -1,7 +1,5 @@
 // ** STATIC IMPORTS **//
 import './App.css';
-import * as SunIcon from './assets/sun.svg';
-import * as MoonIcon from './assets/moon.svg';
 
 // ** COMPONENT & REACT IMPORTS **//
 import { GameOver } from './components/GameOver/GameOver';
@@ -20,7 +18,7 @@ function App() {
   const [gameState, setGameState] = useState({
     win: false,
     active: 'new-game',
-    level: 0,
+    level: 1,
   });
 
   const [isDarkTheme, setIsDarkTheme] = useState(true);
