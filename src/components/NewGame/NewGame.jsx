@@ -4,13 +4,12 @@ export function NewGame({ gameState, setGameState }) {
   return (
     <div id='new-game-screen' className='game-screen'>
       <p>
-        This is a simple memory game. Click on each Pokemon once and only once.
+        This is a simple memory game. Click on each Pokemon once and only once
+        to beat the level. Click any of the cards twice and you lose the game.
+        Complete all three levels to win the game.
       </p>
-      <p>
-        See if you can click them all without clicking any one twice. Click any
-        of the cards twice and you lose the game. Click them all once and you
-        win!
-      </p>
+      <br />
+      <p>Click the start button below when you are ready to play.</p>
       <button
         className='button'
         onClick={() => {

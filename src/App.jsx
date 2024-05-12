@@ -8,6 +8,7 @@ import { NewGame } from './components/NewGame/NewGame';
 import { Scoreboard } from './components/Scoreboard/Scoreboard';
 import { useState } from 'react';
 import { ThemeButton } from './components/ThemeButton/ThemeButton';
+import { Footer } from './components/Footer/Footer';
 
 function App() {
   const [score, setScore] = useState({
@@ -54,6 +55,7 @@ function App() {
           setGameState={setGameState}
         />
       )}
+      <Footer />
     </div>
   );
 }
